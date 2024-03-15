@@ -1,3 +1,5 @@
+// Note: 1 is not a prime number
+
 import java.util.Scanner;
 
 public class isPrimeNumber {
@@ -14,7 +16,7 @@ public class isPrimeNumber {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter a numbers = ");
         int num = sc.nextInt();
-        if (checkPrimeNumber(num)) {
+        if (num != 1 && checkPrimeNumber(num)) {
             System.out.println("Prime Number");
         } else {
             System.out.println("Not a prime number");
