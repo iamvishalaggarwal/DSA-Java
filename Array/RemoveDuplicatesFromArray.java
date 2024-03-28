@@ -25,14 +25,16 @@ public class RemoveDuplicatesFromArray {
                 index++;
             }
         }
-        return index;
+        return index + 1;
     }
 
     public static void main(String[] args) {
         int arr[] = { 1, 2, 2, 3, 3, 3, 4, 4, 5, 5 };
-        System.out.print("Array after removing duplicates = ");
 
-        for (int i = 0; i < removeDuplicates(arr); i++) {
+        int len = removeDuplicates(arr);
+
+        System.out.print("Array after removing duplicates = ");
+        for (int i = 0; i < len; i++) {
             System.out.print(arr[i] + " ");
         }
     }
