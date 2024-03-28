@@ -44,6 +44,10 @@ public class MoveZeroesToEnd {
      * }
      */
 
+    /*
+     ** Optimal Approach: TC = O(n)
+     ** SC = O(1)
+     */
     public static void movingZeroes(int arr[]) {
         int j = 0;
 
