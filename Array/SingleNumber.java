@@ -1,9 +1,7 @@
 package Array;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
 
 /**
  * Probelm : Given a non-empty array of integers nums, every element appears
