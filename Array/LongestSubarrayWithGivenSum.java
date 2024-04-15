@@ -1,4 +1,3 @@
-package Array;
 
 // Problem: Longest subarray with given sum K(positive numbers only)
 public class LongestSubarrayWithGivenSum {

@@ -1,4 +1,3 @@
-package Array;
 
 // Problem: rotate the array to the right
 /*

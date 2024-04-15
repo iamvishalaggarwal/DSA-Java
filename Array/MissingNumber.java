@@ -1,4 +1,3 @@
-package Array;
 
 /**
  * Problem: Given an array nums containing n distinct numbers in the
