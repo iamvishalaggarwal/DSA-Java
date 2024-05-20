@@ -25,7 +25,7 @@ class Node {
  * - usecase: stack, queue
  */
 
-public class LinkedList {
+public class SinglyLinkedList {
 
     public static Node convertToLinkedList(int[] arr) {
         // for converting array to linked list
