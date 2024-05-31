@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedList.SinglyLL;
 
 class Node {
     // need to store data and it's address
@@ -16,8 +16,7 @@ class Node {
     }
 }
 
-public class DeleteOperationsLL {
-
+public class InsertOperations {
     public static Node convertToLinkedList(int[] arr) {
         // for converting array to linked list
         Node head = new Node(arr[0]);
@@ -39,71 +38,73 @@ public class DeleteOperationsLL {
         }
     }
 
-    // Delete Head of LL
-    public static Node deleteHead(Node head) {
-        if (head == null) {
-            return head;
-        }
-        head = head.next;
+    public static Node insertAtHead(Node head, int val) {
+        Node temp = new Node(val);
+        temp.next = head;
+        head = temp;
         return head;
     }
 
-    // Delete Tail of LL
-    public static Node deleteTail(Node head) {
-        if (head == null || head.next == null)
-            return null;
+    public static Node insertAtTail(Node head, int val) {
+        Node newNode = new Node(val);
+        if (head == null) {
+            head = newNode;
+            return head;
+        }
 
         Node temp = head;
-        // second last element
-        while (temp.next.next != null) {
+        while (temp.next != null) {
             temp = temp.next;
         }
-        temp.next = null;
+        temp.next = newNode;
         return head;
     }
 
-    public static Node deleteAtK(Node head, int k) {
-        // if there is empty LL
+    public static Node insertAtK(Node head, int pos, int val) {
         if (head == null) {
-            return head;
+            if (pos == 1) {
+                return new Node(val);
+            } else {
+                return null; // if LL is empty then we can only insert at first
+            }
+        }
+        // insertion at head
+        if (pos == 1) {
+            return new Node(val, head);
         }
 
-        // if we need to delete first element, i.e, head of LL
-        if (k == 1) {
-            head = head.next;
-            return head;
-        }
-
-        Node prev = null;
         Node temp = head;
         int count = 0;
+        Node newNode = new Node(val);
         while (temp != null) {
             count++;
-            if (count == k) {
-                prev.next = prev.next.next;
+            if (count == pos - 1) { // checking for one behind k
+                newNode.next = temp.next;
+                temp.next = newNode;
                 break;
             }
-            prev = temp;
             temp = temp.next;
         }
         return head;
     }
 
-    public static Node deleteByValue(Node head, int value) {
-        if (head == null)
+    public static Node insertBeforeValue(Node head, int val, int ele) {
+        // insert ele before the value 'val'
+        if (head == null) {
             return null;
-
-        if (head.data == value) {
-            head = head.next;
-            return head;
+        }
+        if (head.data == val) {
+            return new Node(ele, head);
         }
 
         Node temp = head;
         Node prev = null;
+
         while (temp != null) {
-            if (temp.data == value) {
-                prev.next = prev.next.next;
-                break;
+            if (temp.data == val) {
+                Node newNode = new Node(ele);
+                newNode.next = temp;
+                prev.next = newNode;
             }
             prev = temp;
             temp = temp.next;
@@ -112,21 +113,15 @@ public class DeleteOperationsLL {
     }
 
     public static void main(String[] args) {
-        int arr[] = { 2, 4, 3, 5, 12 };
+        int arr[] = { 1, 2, 3, 4, 5 };
         Node head = convertToLinkedList(arr);
-
-        // head = deleteHead(head);
-        // System.out.println("Linked list = ");
+        // head = insertAtTail(head, 10);
         // traverse(head);
 
-        // head = deleteTail(head);
+        // head = insertAtK(head, 6, 100);
         // traverse(head);
 
-        // head = deleteAtK(head, 2);
-        // traverse(head);
-
-        head = deleteByValue(head, 2);
+        head = insertBeforeValue(head, 4, 100);
         traverse(head);
-
     }
 }

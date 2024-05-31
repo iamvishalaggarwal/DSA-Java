@@ -1,5 +1,8 @@
-package LinkedList;
+package LinkedList.SinglyLL;
 
+/**
+ * Node
+ */
 class Node {
     // need to store data and it's address
     int data;
@@ -7,7 +10,6 @@ class Node {
 
     public Node(int data) {
         this.data = data;
-        this.next = null;
     }
 
     public Node(int data, Node next) {
@@ -16,7 +18,14 @@ class Node {
     }
 }
 
-public class SearchInLinkedList {
+/*
+ * Linkedlist -
+ * - contagious memory location
+ * - real life example: browser
+ * - usecase: stack, queue
+ */
+
+public class SinglyLinkedList {
 
     public static Node convertToLinkedList(int[] arr) {
         // for converting array to linked list
@@ -31,21 +40,27 @@ public class SearchInLinkedList {
         return head;
     }
 
-    public static boolean isPresent(Node head, int target) {
+    public static int lengthOfLinkedList(Node head) {
         Node temp = head;
+        int count = 0;
         while (temp != null) {
-            if (temp.data == target) {
-                return true;
-            }
             temp = temp.next;
+            count++;
         }
-        return false;
+        return count;
     }
 
     public static void main(String[] args) {
-        int arr[] = { 2, 4, 3, 5 };
-        int target = 10;
+        int arr[] = { 1, 3, 3, 4 };
         Node head = convertToLinkedList(arr);
-        System.out.println("target present = " + isPresent(head, target));
+
+        // for traversing linked list
+        Node temp = head;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+
+        System.out.println("length = " + lengthOfLinkedList(head));
     }
 }

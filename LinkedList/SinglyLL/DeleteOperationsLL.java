@@ -1,4 +1,4 @@
-package LinkedList;
+package LinkedList.SinglyLL;
 
 class Node {
     // need to store data and it's address
@@ -16,7 +16,8 @@ class Node {
     }
 }
 
-public class InsertOperations {
+public class DeleteOperationsLL {
+
     public static Node convertToLinkedList(int[] arr) {
         // for converting array to linked list
         Node head = new Node(arr[0]);
@@ -38,73 +39,71 @@ public class InsertOperations {
         }
     }
 
-    public static Node insertAtHead(Node head, int val) {
-        Node temp = new Node(val);
-        temp.next = head;
-        head = temp;
+    // Delete Head of LL
+    public static Node deleteHead(Node head) {
+        if (head == null) {
+            return head;
+        }
+        head = head.next;
         return head;
     }
 
-    public static Node insertAtTail(Node head, int val) {
-        Node newNode = new Node(val);
+    // Delete Tail of LL
+    public static Node deleteTail(Node head) {
+        if (head == null || head.next == null)
+            return null;
+
+        Node temp = head;
+        // second last element
+        while (temp.next.next != null) {
+            temp = temp.next;
+        }
+        temp.next = null;
+        return head;
+    }
+
+    public static Node deleteAtK(Node head, int k) {
+        // if there is empty LL
         if (head == null) {
-            head = newNode;
+            return head;
+        }
+
+        // if we need to delete first element, i.e, head of LL
+        if (k == 1) {
+            head = head.next;
+            return head;
+        }
+
+        Node prev = null;
+        Node temp = head;
+        int count = 0;
+        while (temp != null) {
+            count++;
+            if (count == k) {
+                prev.next = prev.next.next;
+                break;
+            }
+            prev = temp;
+            temp = temp.next;
+        }
+        return head;
+    }
+
+    public static Node deleteByValue(Node head, int value) {
+        if (head == null)
+            return null;
+
+        if (head.data == value) {
+            head = head.next;
             return head;
         }
 
         Node temp = head;
-        while (temp.next != null) {
-            temp = temp.next;
-        }
-        temp.next = newNode;
-        return head;
-    }
-
-    public static Node insertAtK(Node head, int pos, int val) {
-        if (head == null) {
-            if (pos == 1) {
-                return new Node(val);
-            } else {
-                return null; // if LL is empty then we can only insert at first
-            }
-        }
-        // insertion at head
-        if (pos == 1) {
-            return new Node(val, head);
-        }
-
-        Node temp = head;
-        int count = 0;
-        Node newNode = new Node(val);
-        while (temp != null) {
-            count++;
-            if (count == pos - 1) { // checking for one behind k
-                newNode.next = temp.next;
-                temp.next = newNode;
-                break;
-            }
-            temp = temp.next;
-        }
-        return head;
-    }
-
-    public static Node insertBeforeValue(Node head, int val, int ele) {
-        // insert ele before the value 'val'
-        if (head == null) {
-            return null;
-        }
-        if (head.data == val) {
-            return new Node(ele, head);
-        }
-
-        Node temp = head;
         Node prev = null;
-
         while (temp != null) {
-            if (temp.data == val) {
-                Node newNode = new Node(ele);
-                newNode.next = temp;
-                prev.next = newNode;
+            if (temp.data == value) {
+                prev.next = prev.next.next;
+                break;
             }
             prev = temp;
             temp = temp.next;
@@ -113,15 +112,21 @@ public class InsertOperations {
     }
 
     public static void main(String[] args) {
-        int arr[] = { 1, 2, 3, 4, 5 };
+        int arr[] = { 2, 4, 3, 5, 12 };
         Node head = convertToLinkedList(arr);
-        // head = insertAtTail(head, 10);
+
+        // head = deleteHead(head);
+        // System.out.println("Linked list = ");
         // traverse(head);
 
-        // head = insertAtK(head, 6, 100);
+        // head = deleteTail(head);
         // traverse(head);
 
-        head = insertBeforeValue(head, 4, 100);
+        // head = deleteAtK(head, 2);
+        // traverse(head);
+
+        head = deleteByValue(head, 2);
         traverse(head);
+
     }
 }
