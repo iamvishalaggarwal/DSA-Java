@@ -33,6 +33,8 @@ public class VerticalTraversal {
         // storing it into vertical order
         // suppose we have 10 and 9 on same vertical order,
         // so we need to insert it as [9,10]
+        // Note: we are storing levels as we need to store same level elements in sorted
+        // order
         TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
 
         // in this we store:
