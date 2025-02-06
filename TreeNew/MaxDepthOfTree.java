@@ -3,6 +3,17 @@ package TreeNew;
 import java.util.LinkedList;
 import java.util.Queue;
 
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+
 public class MaxDepthOfTree {
     // using level order approach
     public int maxDepth(TreeNode root) {
